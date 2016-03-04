@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+<android.support.wearable.view.WatchViewStub xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/watch_view_stub"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:rectLayout="@layout/rect_activity_main"
+    app:roundLayout="@layout/round_activity_main"
+    tools:context="com.example.audrey.represent.MainActivity"
+    tools:deviceIds="wear"></android.support.wearable.view.WatchViewStub>
+-->
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+android:layout_height="match_parent" android:gravity="center" android:layout_gravity="center"
+tools:context=".MainActivity" android:orientation="vertical" tools:deviceIds="wear_round">
+
+<TextView android:id="@+id/time" android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="Hello Round Congressional World!"
+    android:textColor="#FFFFFF"
+    android:textSize="24sp"
+    android:layout_marginTop="36dp"
+    android:layout_gravity="center_horizontal" />
+
+<Button
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="To Phone"
+    android:id="@+id/toPhoneBtn"
+    android:layout_gravity="center_horizontal" />
+
+
+</LinearLayout>
