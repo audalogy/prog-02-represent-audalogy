@@ -24,5 +24,7 @@ See [Prog02B Video] (https://youtu.be/VE9ee2vZaGQ)
 ## Acknowledgments
 
 * http://www.raywenderlich.com/103367/material-design
-* CS160 Staff
+* https://github.com/MeghaBambra/android-material-travellist
+* https://www.udemy.com/the-complete-android-developer-course/learn/
+* CS160 Staff (Catnip starter code)
 * Linus Wong
