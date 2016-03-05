@@ -23,7 +23,7 @@
         android:layout_height="wrap_content"
         android:inputType="number"
         android:ems="10"
-        android:id="@+id/editText"
+        android:id="@+id/zipEditText"
         android:layout_marginTop="65dp"
         android:layout_below="@+id/textView"
         android:layout_alignParentStart="true"
@@ -36,7 +36,7 @@
         android:text="Zip Code"
         android:id="@+id/zipCode"
         android:layout_marginLeft="46dp"
-        android:layout_below="@+id/editText"
+        android:layout_below="@+id/zipEditText"
         android:layout_toStartOf="@+id/textView2" />
 
     <Button
@@ -66,8 +66,8 @@
         android:layout_height="wrap_content"
         android:text="Search"
         android:id="@+id/zipSearch"
-        android:layout_alignBottom="@+id/editText"
-        android:layout_toEndOf="@+id/editText"
+        android:layout_alignBottom="@+id/zipEditText"
+        android:layout_toEndOf="@+id/zipEditText"
         android:onClick="zipSearch" />
 
 </RelativeLayout>

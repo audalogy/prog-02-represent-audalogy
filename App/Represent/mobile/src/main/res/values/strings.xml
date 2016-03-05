@@ -1,5 +1,7 @@
 <resources>
     <string name="app_name">Represent</string>
     <string name="action_settings">Settings</string>
-    <string name="title_activity_congress_view">CongressView</string>
+    <string name="title_activity_congress_view">Congress View</string>
+    <string name="title_activity_rep_detail">Representative Details</string>
+
 </resources>

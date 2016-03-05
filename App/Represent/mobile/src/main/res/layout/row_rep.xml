@@ -16,6 +16,7 @@
         android:scaleType="centerCrop" />
 
     <!-- Used for the ripple effect on touch -->
+    <!--MainHolder holds the background-->
     <LinearLayout
         android:id="@+id/mainHolder"
         android:layout_width="match_parent"
@@ -23,12 +24,13 @@
         android:background="?android:selectableItemBackground"
         android:orientation="horizontal" />
 
+    <!--repNameHolder holds the name details-->
     <LinearLayout
         android:id="@+id/repNameHolder"
         android:layout_width="match_parent"
-        android:layout_height="45dp"
+        android:layout_height="wrap_content"
         android:layout_gravity="bottom"
-        android:orientation="horizontal">
+        android:orientation="vertical">
 
         <TextView
             android:id="@+id/repName"
@@ -38,6 +40,36 @@
             android:gravity="left"
             android:paddingLeft="10dp"
             android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="@android:color/white" />
+
+        <TextView
+            android:id="@+id/repEmail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:gravity="left"
+            android:paddingLeft="10dp"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="@android:color/white" />
+
+        <TextView
+            android:id="@+id/repWebsite"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:gravity="left"
+            android:paddingLeft="10dp"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="@android:color/white" />
+
+        <TextView
+            android:id="@+id/repTweet"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:gravity="left"
+            android:paddingLeft="10dp"
+            android:textAppearance="?android:attr/textAppearanceSmall"
             android:textColor="@android:color/white" />
 
     </LinearLayout>

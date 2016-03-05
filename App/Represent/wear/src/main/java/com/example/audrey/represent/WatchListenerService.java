@@ -17,7 +17,8 @@ import java.nio.charset.StandardCharsets;
 public class WatchListenerService extends WearableListenerService {
     // In PhoneToWatchService, we passed in a path
     // These paths serve to differentiate different phone-to-watch messages
-    private static final String BERKELEY_FEED = "/94704";
+
+    private static final String SF_FEED = "/zipData";
     private static final String TOAST = "/send_toast";
 
 
@@ -25,15 +26,15 @@ public class WatchListenerService extends WearableListenerService {
     public void onMessageReceived(MessageEvent messageEvent) {
         Log.d("T", "in WatchListenerService, got: " + messageEvent.getPath());
         //use the 'path' field in send message to differentiate use cases
-        //(here, 94704)
+        //(here, 94105)
 
-        if( messageEvent.getPath().equalsIgnoreCase( BERKELEY_FEED ) ) {
+        if( messageEvent.getPath().equalsIgnoreCase( SF_FEED ) ) {
             String value = new String(messageEvent.getData(), StandardCharsets.UTF_8);
             Intent intent = new Intent(this, MainActivity.class );
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             //you need to add this flag since you're starting a new activity from a service
-            intent.putExtra("ZIP_CODE", "94704");
-            Log.d("T", "about to start watch MainActivity with ZIP_CODE: 94704");
+            intent.putExtra("REP_NAME", "Boxer");
+            Log.d("T", "about to start phone rep detail with REP_NAME: Boxer");
             //startActivity(intent); starts the MainActivity class
 
             // Make a toast with the String

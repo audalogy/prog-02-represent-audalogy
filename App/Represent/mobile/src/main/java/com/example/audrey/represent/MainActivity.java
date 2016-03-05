@@ -8,13 +8,18 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
     private Button searchButton;
+    private CongressViewAdapter mAdapter;
+    private EditText zipCodeView;
+
 
 //    public void currentSearch(View view) {
-//        Intent sendIntent = new Intent(MainActivity.this, CongressView.class); //intent is going to go from MainActivity to CongressView
+//        Intent sendIntent = new Intent(MainActivity.this, CongressViewActivity.class); //intent is going to go from MainActivity to CongressViewActivity
 //        String zipCode = "94704";
 //        sendIntent.putExtra("ZIP_CODE", zipCode);
 //        startActivity(sendIntent); //start activity
@@ -28,32 +33,36 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         searchButton = (Button) findViewById(R.id.searchButton);
+        zipCodeView = (EditText) findViewById(R.id.zipEditText);
 
         searchButton.setOnClickListener(new View.OnClickListener() { //set mobile Listener
-        @Override
-        public void onClick(View v) {
-            Intent serviceIntent = new Intent(getBaseContext(), PhoneToWatchService.class); //Listen to the PhoneToWatchService
-            serviceIntent.putExtra("ZIP_CODE", "94704"); //hash table with key and value
-            startService(serviceIntent);
+            @Override
+            public void onClick(View v) {
+                Intent serviceIntent = new Intent(getBaseContext(), PhoneToWatchService.class); //Listen to the PhoneToWatchService
+                String zipCode = zipCodeView.getText().toString();
+                serviceIntent.putExtra("ZIP_CODE", zipCode); //hash table with key and value
+                startService(serviceIntent);
 
-            Intent sendIntent = new Intent(MainActivity.this, CongressView.class); //intent is going to go from MainActivity to CongressView
-            String zipCode = "94704";
-            sendIntent.putExtra("ZIP_CODE", zipCode);
-            startActivity(sendIntent); //start activity
-        }
-    });
+                Intent sendIntent = new Intent(MainActivity.this, CongressViewActivity.class); //intent is going to go from MainActivity to CongressViewActivity
+                sendIntent.putExtra("ZIP_CODE", zipCode);
+                startActivity(sendIntent); //start activity
+            }
+        });
 
-//        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-//        fab.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-//                        .setAction("Action", null).show();
-//            }
-//        });
+        mAdapter = new CongressViewAdapter(this);
+
+        // set the listener to the adapter
+        mAdapter.setOnItemClickListener(onItemClickListener);
+
     }
 
-
+    // create an instance of OnItemClickListener below onCreate():
+    CongressViewAdapter.OnItemClickListener onItemClickListener = new CongressViewAdapter.OnItemClickListener() {
+        @Override
+        public void onItemClick(View v, int position) {
+            Toast.makeText(MainActivity.this, "Clicked " + position, Toast.LENGTH_SHORT).show();
+        }
+    };
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

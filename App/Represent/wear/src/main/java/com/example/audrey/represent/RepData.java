@@ -3,7 +3,7 @@ package com.example.audrey.represent;
 import java.util.ArrayList;
 
 /**
- * Created by Audrey on 3/2/16.
+ * Created by Audrey on 3/4/16.
  */
 public class RepData {
 
@@ -15,9 +15,6 @@ public class RepData {
             Rep rep = new Rep();
             rep.name = repNameArray[i];
             rep.imageName = repNameArray[i].replaceAll("\\s+", "").toLowerCase();
-            rep.email = "npelosi@gmail.com";
-            rep.website = "http://www.democraticleader.gov/";
-            rep.tweet = "@NancyPelosi: We have a responsibility to ensure children & residents of #FlintWaterCrisis ... ";
 //            if (i == 2 || i == 5) {
 //                rep.isFav = true;
 //            }

@@ -6,10 +6,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.support.v7.widget.Toolbar;
+import android.view.View;
 
 //source: http://www.raywenderlich.com/103367/material-design
 
-public class CongressView extends AppCompatActivity {
+public class CongressViewActivity extends AppCompatActivity {
     private RecyclerView mRecyclerView;
     private StaggeredGridLayoutManager mStaggeredLayoutManager;
     private CongressViewAdapter mAdapter;
@@ -21,7 +22,7 @@ public class CongressView extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-       //Int zipCode = MainActivity.zipCode; //get zip code from MainActivity
+        //Int zipCode = MainActivity.zipCode; //get zip code from MainActivity
         Intent myIntent = getIntent();
         String value = myIntent.getStringExtra("ZIP_CODE");
 
@@ -34,15 +35,18 @@ public class CongressView extends AppCompatActivity {
         // create an instance of the adapter and pass it to the RecyclerView
         mAdapter = new CongressViewAdapter(this);
         mRecyclerView.setAdapter(mAdapter);
+        mAdapter.setOnItemClickListener(onItemClickListener);
 
-//        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-//        fab.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-//                        .setAction("Action", null).show();
-//            }
-//        });
     }
 
+    CongressViewAdapter.OnItemClickListener onItemClickListener = new CongressViewAdapter.OnItemClickListener() {
+        @Override
+        public void onItemClick(View v, int position) {
+            Intent nextIntent = new Intent(CongressViewActivity.this, RepDetailActivity.class);
+            nextIntent.putExtra(RepDetailActivity.REP_NAME, position);
+//            ImageView repImage = (ImageView) v.findViewById(R.id.repImage);
+//            LinearLayout repNameHolder = (LinearLayout) v.findViewById(R.id.repNameHolder);
+            startActivity(nextIntent);
+        }
+    };
 }

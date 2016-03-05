@@ -46,21 +46,22 @@ public class PhoneToWatchService extends Service { //step 1: declare listener
     public int onStartCommand(Intent intent, int flags, int startId) { //onStartCommand runs when the service starts. Has access to intent. OnCreate cannot get intent
         // Which zip code do we want to search? Grab this info from sendIntent in Main Activity
         // which was passed over when we called startService
-        Bundle extras = intent.getExtras();
-        final String zipCode = extras.getString("ZIP_CODE"); //what is value for key ZIP_CODE
+        if (intent != null) {
+            Bundle extras = intent.getExtras();
+            final String zipCode = extras.getString("ZIP_CODE"); //what is value for key ZIP_CODE
 
-        // Send the message with the zip code
-        new Thread(new Runnable() {  //starting new thread with method run. It sends the message according to the API
-            @Override
-            public void run() {
-                //first, connect to the api client
-                mApiClient.connect();
-                //now that you're connected, send a massage with the zip code. There is a / because ??
-                sendMessage("/" + zipCode, zipCode);
-            }
-        }).start();
-
-        return START_STICKY;
+            // Send the message with the zip code
+            new Thread(new Runnable() {  //starting new thread with method run. It sends the message according to the API
+                @Override
+                public void run() {
+                    //first, connect to the api client
+                    mApiClient.connect();
+                    //now that you're connected, send a massage with the zip code. There is a / because it's like accessing a URI
+                    sendMessage("/zipData", zipCode);
+                }
+            }).start();
+        }
+        return START_REDELIVER_INTENT;
     }
 
     @Override //remember, all services need to implement an IBinder
