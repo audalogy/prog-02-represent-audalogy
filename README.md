@@ -15,11 +15,11 @@ See [Prog02B Video] (https://youtu.be/VE9ee2vZaGQ)
 
 ## Screenshots
 
-<img src="screenshots/rep01.png" height="400" alt="Screenshot"/>
-<img src="screenshots/rep02.png" height="400" alt="Screenshot"/>
-<img src="screenshots/rep03.png" height="400" alt="Screenshot"/>
-<img src="screenshots/rep04.png" height="400" alt="Screenshot"/>
-<img src="screenshots/rep05.png" height="400" alt="Screenshot"/>
+<img src="screenshots/Rep01.png" height="400" alt="Screenshot"/>
+<img src="screenshots/Rep02.png" height="400" alt="Screenshot"/>
+<img src="screenshots/Rep03.png" height="400" alt="Screenshot"/>
+<img src="screenshots/Rep04.png" height="400" alt="Screenshot"/>
+<img src="screenshots/Rep05.png" height="400" alt="Screenshot"/>
 
 ## Acknowledgments
 
