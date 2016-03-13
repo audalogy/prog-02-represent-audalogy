@@ -18,23 +18,25 @@ public class WatchListenerService extends WearableListenerService {
     // In PhoneToWatchService, we passed in a path
     // These paths serve to differentiate different phone-to-watch messages
 
-    private static final String SF_FEED = "/zipData";
-    private static final String TOAST = "/send_toast";
+    private static final String REP_FEED = "/repData";
+//    private static final String TOAST = "/send_toast";
 
 
     @Override
     public void onMessageReceived(MessageEvent messageEvent) {
         Log.d("T", "in WatchListenerService, got: " + messageEvent.getPath());
         //use the 'path' field in send message to differentiate use cases
-        //(here, 94105)
 
-        if( messageEvent.getPath().equalsIgnoreCase( SF_FEED ) ) {
+        if( messageEvent.getPath().equalsIgnoreCase( REP_FEED ) ) {
             String value = new String(messageEvent.getData(), StandardCharsets.UTF_8);
-            Intent intent = new Intent(this, MainActivity.class );
-            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
+            //TODO: display rep image, name, and party
+
+            //Intent intent = new Intent(this, MainActivity.class );
+            //intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             //you need to add this flag since you're starting a new activity from a service
-            intent.putExtra("REP_NAME", "Boxer");
-            Log.d("T", "about to start phone rep detail with REP_NAME: Boxer");
+            //intent.putExtra("REP_DATA", "rep string response");
+            Log.d("T", "watch received data: " + value);
             //startActivity(intent); starts the MainActivity class
 
             // Make a toast with the String

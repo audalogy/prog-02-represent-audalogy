@@ -48,7 +48,7 @@ public class PhoneToWatchService extends Service { //step 1: declare listener
         // which was passed over when we called startService
         if (intent != null) {
             Bundle extras = intent.getExtras();
-            final String zipCode = extras.getString("ZIP_CODE"); //what is value for key ZIP_CODE
+            final String repData = extras.getString("REP_DATA"); //what is value for key REP_DATA
 
             // Send the message with the zip code
             new Thread(new Runnable() {  //starting new thread with method run. It sends the message according to the API
@@ -57,7 +57,7 @@ public class PhoneToWatchService extends Service { //step 1: declare listener
                     //first, connect to the api client
                     mApiClient.connect();
                     //now that you're connected, send a massage with the zip code. There is a / because it's like accessing a URI
-                    sendMessage("/zipData", zipCode);
+                    sendMessage("/repData", repData);
                 }
             }).start();
         }

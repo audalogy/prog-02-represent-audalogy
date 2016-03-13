@@ -8,6 +8,7 @@ import android.util.Log;
 
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.ResultCallback;
+import com.google.android.gms.wearable.MessageApi;
 import com.google.android.gms.wearable.Node;
 import com.google.android.gms.wearable.NodeApi;
 import com.google.android.gms.wearable.Wearable;
@@ -41,6 +42,28 @@ public class WatchToPhoneService extends Service implements GoogleApiClient.Conn
         mWatchApiClient.disconnect();
     }
 
+    @Override
+    public int onStartCommand(Intent intent, int flags, int startId) { //onStartCommand runs when the service starts. Has access to intent. OnCreate cannot get intent
+        // Which zip code do we want to search? Grab this info from sendIntent in Main Activity
+        // which was passed over when we called startService
+        if (intent != null) {
+            Bundle extras = intent.getExtras();
+            final String repData = extras.getString("REP_DATA"); //what is value for key REP_NAME
+
+            // Send the message with the zip code
+            new Thread(new Runnable() {  //starting new thread with method run. It sends the message according to the API
+                @Override
+                public void run() {
+                    //first, connect to the api client
+                    mWatchApiClient.connect();
+                    //now that you're connected, send a massage with the zip code. There is a / because it's like accessing a URI
+                    sendMessage("/repData", repData);
+                }
+            }).start();
+        }
+        return START_REDELIVER_INTENT;
+    }
+
 
     @Override
     public IBinder onBind(Intent intent) {
@@ -58,7 +81,7 @@ public class WatchToPhoneService extends Service implements GoogleApiClient.Conn
                         Log.d("T", "found nodes");
                         //when we find a connected node, we populate the list declared above
                         //finally, we can send a message
-                        sendMessage("/send_toast", "Hello Represent!");
+                        sendMessage("/repData", new String("REP_DATA"));
                         Log.d("T", "sent");
                     }
                 });
@@ -68,10 +91,24 @@ public class WatchToPhoneService extends Service implements GoogleApiClient.Conn
     public void onConnectionSuspended(int i) {}
 
     private void sendMessage(final String path, final String text ) {
-        for (Node node : nodes) {
-            Wearable.MessageApi.sendMessage(
-                    mWatchApiClient, node.getId(), path, text.getBytes());
-        }
-    }
 
+        new Thread( new Runnable() {
+            @Override
+            public void run() {
+                NodeApi.GetConnectedNodesResult nodes = Wearable.NodeApi.getConnectedNodes( mWatchApiClient ).await();
+                for(Node node : nodes.getNodes()) {
+                    //we find 'nodes', which are nearby bluetooth devices (aka emulators)
+                    //send a message for each of these nodes (just one, for an emulator)
+                    MessageApi.SendMessageResult result = Wearable.MessageApi.sendMessage(
+                            //4 arguments: api client, the node ID, the path (for the listener to parse), and the message itself (you need to convert it to bytes.)
+                            mWatchApiClient, node.getId(), path, text.getBytes() ).await();
+
+                }
+            }
+        }).start();
+//        for (Node node : nodes) {
+//            Wearable.MessageApi.sendMessage(
+//                    mWatchApiClient, node.getId(), path, text.getBytes());
+//        }
+    }
 }

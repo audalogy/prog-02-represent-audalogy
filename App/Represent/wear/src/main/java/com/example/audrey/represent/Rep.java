@@ -8,7 +8,11 @@ import android.content.Context;
 public class Rep {
 
     public String name;
-    public String imageName;
+    //TWITTER: public String imageName;
+    public String first_name;
+    public String last_name;
+    public String party;
+
 //    public boolean isFav;
 
     public int getImageResourceId(Context context) {

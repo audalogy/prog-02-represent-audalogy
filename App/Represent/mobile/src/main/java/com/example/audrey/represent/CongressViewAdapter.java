@@ -25,9 +25,10 @@ public class CongressViewAdapter extends RecyclerView.Adapter<CongressViewAdapte
     ArrayList<Rep> mReps;
     OnItemClickListener mItemClickListener;
 
-    public CongressViewAdapter(Context context) {
+    //constructor of CongressViewAdapter to take two params: context and string of rep data
+    public CongressViewAdapter(Context context, ArrayList<Rep> sunlightReps) {
         this.mContext = context;
-        mReps = new RepData().repList();
+        mReps = sunlightReps;
     }
 
     // 1 returns the number of items from your data array. In this case, you’re using the size of the PlaceData.placeList().
@@ -46,7 +47,8 @@ public class CongressViewAdapter extends RecyclerView.Adapter<CongressViewAdapte
     public void onBindViewHolder(final ViewHolder holder, final int position) {
         final Rep rep = mReps.get(position);
 
-        holder.repName.setText(rep.name);
+        holder.repName.setText(rep.first_name + " " + rep.last_name);
+        holder.repParty.setText(rep.party);
         holder.repEmail.setText(rep.email);
         holder.repWebsite.setText(rep.website);
         holder.repTweet.setText(rep.tweet);
@@ -59,6 +61,7 @@ public class CongressViewAdapter extends RecyclerView.Adapter<CongressViewAdapte
         public LinearLayout mainHolder;
         public LinearLayout repNameHolder;
         public TextView repName;
+        public TextView repParty;
         public TextView repEmail;
         public TextView repWebsite;
         public TextView repTweet;
@@ -68,6 +71,7 @@ public class CongressViewAdapter extends RecyclerView.Adapter<CongressViewAdapte
             super(itemView);
             mainHolder = (LinearLayout) itemView.findViewById(R.id.mainHolder);
             repName = (TextView) itemView.findViewById(R.id.repName);
+            repParty = (TextView) itemView.findViewById(R.id.repParty);
             repEmail = (TextView) itemView.findViewById(R.id.repEmail);
             repWebsite = (TextView) itemView.findViewById(R.id.repWebsite);
             repTweet = (TextView) itemView.findViewById(R.id.repTweet);
@@ -85,7 +89,7 @@ public class CongressViewAdapter extends RecyclerView.Adapter<CongressViewAdapte
             Log.d(TAG, "ClickListener On");
             if (mItemClickListener != null) {
                 Log.d(TAG, "ItemClickListener On");
-                mItemClickListener.onItemClick(itemView, getPosition());
+                mItemClickListener.onItemClick(itemView, getAdapterPosition());
             }
         }
     }

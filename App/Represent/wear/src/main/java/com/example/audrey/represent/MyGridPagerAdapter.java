@@ -4,8 +4,8 @@ import android.app.Fragment;
 import android.app.FragmentManager;
 import android.content.Context;
 import android.graphics.drawable.Drawable;
-import android.support.wearable.view.CardFragment;
 import android.support.wearable.view.FragmentGridPagerAdapter;
+import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,10 +26,6 @@ public class MyGridPagerAdapter extends FragmentGridPagerAdapter {
         mReps = new RepData().repList();
     }
 
-//    static final int[] BG_IMAGES = new int[] {
-//            R.drawable.debug_background_1, R.drawable.debug_background_2
-//    };
-
     // A simple container for static data in each page
     private static class Page {
         // static resources
@@ -41,7 +37,7 @@ public class MyGridPagerAdapter extends FragmentGridPagerAdapter {
     // Create a static set of pages in a 2D array
     private final Page[][] PAGES = {  };
 
-    // Override methods in FragmentGridPagerAdapter
+    // Override methods in FragmentGridPagerAdapter >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
     // Obtain the number of pages (vertical)
     @Override
@@ -58,20 +54,12 @@ public class MyGridPagerAdapter extends FragmentGridPagerAdapter {
     // Obtain the UI fragment at the specified position
     @Override
     public Fragment getFragment(int row, int col) {
-//        Page page = PAGES[row][col];
+        Log.d("GridAdapter", "row " + row + " col " + col);
+
         Rep rep = mReps.get(row);
-
-        String title = rep.name;
-//                page.titleRes != 0 ? mContext.getString(page.titleRes) : null;
+        final String title = rep.name;
         String text = "Democrat";
-//                page.textRes != 0 ? mContext.getString(page.textRes) : null;
-        CardFragment fragment = CardFragment.create(title, text, 0 /* TODO: need an icon resource id */);
-
-        // Advanced settings (card gravity, card expansion/scrolling)
-//            fragment.setCardGravity(page.cardGravity);
-//            fragment.setExpansionEnabled(page.expansionEnabled);
-//            fragment.setExpansionDirection(page.expansionDirection);
-//            fragment.setExpansionFactor(page.expansionFactor);
+        final WatchFragment fragment = WatchFragment.newInstance(title, text); // WatchFragment.create(title, text, 0 /* TODO: need an icon resource id */);
         return fragment;
     }
 

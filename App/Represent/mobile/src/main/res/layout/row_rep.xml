@@ -43,6 +43,16 @@
             android:textColor="@android:color/white" />
 
         <TextView
+            android:id="@+id/repParty"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:gravity="left"
+            android:paddingLeft="10dp"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textColor="@android:color/white" />
+
+        <TextView
             android:id="@+id/repEmail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -72,6 +82,16 @@
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:textColor="@android:color/white" />
 
+
+        <!--myTweetLayout holds the tweet info-->
+        <LinearLayout
+            android:id="@+id/myTweetLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:orientation="vertical"/>
+
     </LinearLayout>
+
 
 </android.support.v7.widget.CardView>
