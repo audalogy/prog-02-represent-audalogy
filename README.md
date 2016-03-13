@@ -12,6 +12,7 @@ Audrey Leung ([audreycml@berkeley.edu](mailto:audreycml@berkeley.edu))
 ## Demo Video
 
 See [Prog02B Video] (https://youtu.be/VE9ee2vZaGQ)
+See [Prog02C Video] (https://youtu.be/mecc-HCJoNE)
 
 ## Screenshots
 
@@ -25,6 +26,7 @@ See [Prog02B Video] (https://youtu.be/VE9ee2vZaGQ)
 
 * http://www.raywenderlich.com/103367/material-design
 * https://github.com/MeghaBambra/android-material-travellist
+* http://stackoverflow.com/questions/28541459/getting-403-forbidden-when-using-twitter-fabric-to-get-user-timeline
 * https://www.udemy.com/the-complete-android-developer-course/learn/
 * CS160 Staff (Catnip starter code)
 * Linus Wong
