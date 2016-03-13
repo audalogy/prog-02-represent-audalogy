@@ -21,6 +21,7 @@ See [Prog02C Video] (https://youtu.be/mecc-HCJoNE)
 <img src="screenshots/Rep03.png" height="400" alt="Screenshot"/>
 <img src="screenshots/Rep04.png" height="400" alt="Screenshot"/>
 <img src="screenshots/Rep05.png" height="400" alt="Screenshot"/>
+<img src="screenshots/Rep06.png" height="400" alt="Screenshot"/>
 
 ## Acknowledgments
 
